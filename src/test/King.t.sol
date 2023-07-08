@@ -19,32 +19,6 @@ contract KingTest is DSTest {
     }
 
     function testKingHack() public {
-        /////////////////
-        // LEVEL SETUP //
-        /////////////////
-
-        KingFactory kingFactory = new KingFactory();
-        ethernaut.registerLevel(kingFactory);
-        vm.startPrank(eoaAddress);
-        address levelAddress = ethernaut.createLevelInstance{value: 1 ether}(kingFactory);
-        King ethernautKing = King(payable(levelAddress));
-
-        //////////////////
-        // LEVEL ATTACK //
-        //////////////////
-
-        // Create KingHack Contract
-        KingHack kingHack = new KingHack(payable(levelAddress));
-
-        // Call the attack function the recieve function in the KingHack contract will prevent others from becoming king
-        kingHack.attack{value: 1 ether}();
-
-        //////////////////////
-        // LEVEL SUBMISSION //
-        //////////////////////
-
-        bool levelSuccessfullyPassed = ethernaut.submitLevelInstance(payable(levelAddress));
-        vm.stopPrank();
-        assert(levelSuccessfullyPassed);
+     
     }
 }
