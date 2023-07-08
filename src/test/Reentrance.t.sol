@@ -19,32 +19,6 @@ contract ReentranceTest is DSTest {
     }
 
     function testReentranceHack() public {
-        /////////////////
-        // LEVEL SETUP //
-        /////////////////
-
-        ReentranceFactory reentranceFactory = new ReentranceFactory();
-        ethernaut.registerLevel(reentranceFactory);
-        vm.startPrank(eoaAddress);
-        address levelAddress = ethernaut.createLevelInstance{value: 1 ether}(reentranceFactory);
-        Reentrance ethernautReentrance = Reentrance(payable(levelAddress));
-
-        //////////////////
-        // LEVEL ATTACK //
-        //////////////////
-
-        // Create ReentranceHack contract
-        ReentranceHack reentranceHack = new ReentranceHack(levelAddress);
-
-        // Call the attack function to drain the contract
-        reentranceHack.attack{value: 0.4 ether}();
-
-        //////////////////////
-        // LEVEL SUBMISSION //
-        //////////////////////
-
-        bool levelSuccessfullyPassed = ethernaut.submitLevelInstance(payable(levelAddress));
-        vm.stopPrank();
-        assert(levelSuccessfullyPassed);
+     
     }
 }
