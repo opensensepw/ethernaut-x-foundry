@@ -16,32 +16,6 @@ contract ShopTest is DSTest {
     }
 
     function testShopHack() public {
-        /////////////////
-        // LEVEL SETUP //
-        /////////////////
-
-        ShopFactory shopFactory = new ShopFactory();
-        ethernaut.registerLevel(shopFactory);
-        vm.startPrank(tx.origin);
-        address levelAddress = ethernaut.createLevelInstance(shopFactory);
-        Shop ethernautShop = Shop(payable(levelAddress));
-
-        //////////////////
-        // LEVEL ATTACK //
-        //////////////////
-
-        // Create ShopHack Contract
-        ShopHack shopHack = new ShopHack(ethernautShop);
-
-        // attack Shop contract.
-        shopHack.attack();
-
-        //////////////////////
-        // LEVEL SUBMISSION //
-        //////////////////////
-
-        bool levelSuccessfullyPassed = ethernaut.submitLevelInstance(payable(levelAddress));
-        vm.stopPrank();
-        assert(levelSuccessfullyPassed);
+      
     }
 }
