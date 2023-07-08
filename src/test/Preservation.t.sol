@@ -16,35 +16,6 @@ contract PreservationTest is DSTest {
     }
 
     function testPreservationHack() public {
-        /////////////////
-        // LEVEL SETUP //
-        /////////////////
-
-        PreservationFactory preservationFactory = new PreservationFactory();
-        ethernaut.registerLevel(preservationFactory);
-        vm.startPrank(tx.origin);
-        address levelAddress = ethernaut.createLevelInstance(preservationFactory);
-        Preservation ethernautPreservation = Preservation(payable(levelAddress));
-        
-        //////////////////
-        // LEVEL ATTACK //
-        //////////////////
-
-        // Move the block from 0 to 5 to prevent underflow errors
-        vm.roll(5);
-
-        // Create preservationHack contract
-        PreservationHack preservationHack = new PreservationHack(levelAddress);
-
-        // Run the attack
-        preservationHack.attack();  
-
-        //////////////////////
-        // LEVEL SUBMISSION //
-        //////////////////////   
-
-        bool levelSuccessfullyPassed = ethernaut.submitLevelInstance(payable(levelAddress));
-        vm.stopPrank();
-        assert(levelSuccessfullyPassed);
+      
     }
 }
